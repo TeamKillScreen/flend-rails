@@ -4,9 +4,9 @@
         %title= 'Flend'
         %link= stylesheet_link_tag    "application", :media => "all"
         %link= javascript_include_tag "application"
+        =render 'layouts/shim'
     %body
-        %div#row
-            %div.span2
-                %h1= 'Menu'
-            %div.span10
-                =yield
+        =render 'layouts/header'       
+        .container
+            =yield
+            =render 'layouts/footer'
