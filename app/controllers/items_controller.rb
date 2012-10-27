@@ -8,6 +8,13 @@ class ItemsController < ApplicationController
   def show
   	id = params[:id]
   	@item = Item.find(id)
+  	categories = Category.all
+  	catindex = categories.index { |x| x.id == @item.category }
+  	if catindex.nil?
+  		@category = "Unknown"
+  	else
+  		@category = categories[catindex].description
+  	end
   end
 
   def create
@@ -63,6 +70,8 @@ class ItemsController < ApplicationController
   		flash[:error] = "You need to be logged in to create a new item!"
   		redirect_to sign_in_path
   	else
+  		@categories = Category.all
+
   		if flash.key? :params and flash[:params].has_key? :item
   			@title = flash[:params][:item][:title] if flash[:params][:item].has_key? :title
   			@description = flash[:params][:item][:description] if flash[:params][:item].has_key? :description

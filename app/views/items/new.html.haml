@@ -19,7 +19,7 @@
 				.control-group
 					= label :item, :category, "Category:", {class: "control-label"}
 					.controls
-						= text_field :item, "category", value: @category
+						= select :item, "category", @categories.map { |u| [u.description,u.id] }, value: @category
 
 				.control-group
 					= label :item, :tags, "Tags (Comma seperated):", {class: "control-label"}
