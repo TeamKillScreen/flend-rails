@@ -24,7 +24,12 @@
 				.control-group
 					= label :item, :tags, "Tags (Comma seperated):", {class: "control-label"}
 					.controls
-						= text_field :item, "tags", value: @tags
+						= text_field :item, "tags", value: @tags, placeholder: "e.g. ladder, long, green"
+
+				.control-group
+					= label :item, :postcode, "Item Location*:", {class: "control-label"}
+					.controls
+						= text_field :item, "postcode", value: @postcode, placeholder: "Post Code: e.g. OL11 1RY"
 
 				.control-group
 					.controls

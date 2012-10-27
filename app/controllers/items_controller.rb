@@ -30,10 +30,22 @@ class ItemsController < ApplicationController
   			return
   		end
 
+  		if not item.has_key? :postcode or item[:postcode].nil? or item[:postcode] == ""
+  			flash[:error] = "Error creating item: Item Location must be filled in"
+  			flash[:params] = params
+  			redirect_to new_item_path
+  			return
+  		elsif not item[:postcode].match /^([A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\ [0-9][ABD-HJLNP-UW-Z]{2}|(GIR\ 0AA)|(SAN\ TA1)|(BFPO\ (C\/O\ )?[0-9]{1,4})|((ASCN|BBND|[BFS]IQQ|PCRN|STHL|TDCU|TKCA)\ 1ZZ))$/
+  			flash[:error] = "Error creating item: Please enter a valid postcode."
+  			flash[:params] = params
+  			redirect_to new_item_path
+  			return
+  		end
+
   		#Passed validation, create!
   		tags = item[:tags].gsub(/\s+/, "").split(',')
 
-  		item = Item.create(title: item[:title], description: item[:description], category: item[:category], tags: tags)
+  		item = Item.create(title: item[:title], description: item[:description], category: item[:category], tags: tags, postcode: item[:postcode])
 
   		if item.nil?
   			flash[:error] = "Error creating item: Unable to save"
@@ -56,6 +68,7 @@ class ItemsController < ApplicationController
   			@description = flash[:params][:item][:description] if flash[:params][:item].has_key? :description
   			@category = flash[:params][:item][:category] if flash[:params][:item].has_key? :category
   			@tags = flash[:params][:item][:tags] if flash[:params][:item].has_key? :tags
+  			@postcode = flash[:params][:item][:postcode] if flash[:params][:item].has_key? :postcode
   		end
   	end
   end
