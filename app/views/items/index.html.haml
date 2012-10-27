@@ -1,0 +1,14 @@
+%h1= 'Items'
+
+%table.table
+    %thead
+        %tr
+            %th= 'Title'
+            %th= 'Description'
+    %tbody
+    - @items.each do |item|
+        %tr
+            %td= item.title
+            %td= item.description
+
+

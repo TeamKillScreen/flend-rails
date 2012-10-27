@@ -5,11 +5,17 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'activeresource', :require => 'active_resource'
+
+gem 'haml'
+
+gem 'bootstrap-sass'
+
 group :development, :test do
   gem 'sqlite3'
 end
 
-group :production, :deployment do
+group :production do
   gem 'pg'
 end
 
