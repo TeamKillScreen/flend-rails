@@ -1,3 +1,11 @@
 %h1= 'Item Details'
 
-= @item.inspect
+%dl.dl-horizontal
+	%dt= 'Title:'
+	%dd= @item.title
+	%dt= 'Description:'
+	%dd= @item.description
+	%dt= 'Category:'
+	%dd= @item.category
+	%dt= 'Tags:'
+	%dd= @item.tags.join(", ")
