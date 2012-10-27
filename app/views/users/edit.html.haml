@@ -1,0 +1,32 @@
+%h1= 'Edit My Account'
+
+.container
+	.row
+		.offset3.span4
+			= form_tag({ :action => "update", :controller => "users"}, {class: "form-horizontal"}) do
+				.control-group
+					= label :userupdate, :userupdatename, "Username:", {class: "control-label"}
+					.controls
+						= text_field :userupdate, "username", value: @user.username, disabled: true
+				.control-group
+					= label :userupdate, :firstname, "First Name:", {class: "control-label"}
+					.controls
+						= text_field :userupdate, "fistname", value: @user.firstName
+				.control-group
+					= label :userupdate, :surname, "Surname:", {class: "control-label"}
+					.controls
+						= text_field :userupdate, "surname", value: @user.lastName
+				.control-group
+					= label :userupdate, :postcode, "Postcode:", {class: "control-label"}
+					.controls
+						= text_field :userupdate, "postcode", placeholder: "Post Code: e.g. OL11 1RY"
+				.control-group
+					= label :userupdate, :mobnumber, "Mobile Number:", {class: "control-label"}
+					.controls
+						= text_field :userupdate, "mobnumber", placeholder: "e.g. 07740123123"
+				
+				.control-group
+					.controls
+						= submit_tag 'Update User', {class: "btn"}
+
+= link_to 'Back', my_account_path, class: "btn"

@@ -1,0 +1,12 @@
+%h1= 'My Account'
+
+
+%dl.dl-horizontal
+	%dt= 'Username:'
+	%dd= @user.username
+	%dt= 'First Name:'
+	%dd= @user.firstName
+	%dt= 'Surname:'
+	%dd= @user.lastName
+
+= link_to 'Edit', my_account_edit_path, class: 'btn'

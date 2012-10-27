@@ -27,4 +27,26 @@ class UsersController < ApplicationController
 		flash.keep
 		try_to_redirect_back
 	end
+
+	def show
+		unless session.has_key? :user
+  		flash[:error] = "You need to be logged in to view your account details!"
+  		redirect_to sign_in_path
+  		else
+  			@user = session[:user]
+  		end
+	end
+
+	def edit
+		unless session.has_key? :user
+  		flash[:error] = "You need to be logged in to view your account details!"
+  		redirect_to sign_in_path
+  		else
+  			@user = session[:user]
+  		end
+	end
+
+	def update
+		redirect_to root_path
+	end
 end
