@@ -2,10 +2,17 @@
 	.navbar-inner
 		.container
 			%nav
+				#logo= 'Flend.co'
+				- if @welcome_message
+					#welcome_message
+						= @welcome_message
 				%ul.nav.pull-right
 					%li
 						= link_to 'Home', root_path
 					%li
 						= link_to 'Items', items_path
 					%li
-						= link_to 'Sign In', sign_in_path
+						- if @sign_in
+							= link_to 'Sign In', sign_in_path
+						- else
+							= link_to 'Sign Out', sign_out_path

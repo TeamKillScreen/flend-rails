@@ -1,16 +1,21 @@
 %h1= 'Sign In'
 
-= form_tag({ :action => "sign_in", :controller => "users"}, {class: "form-horizontal"}) do
-	.control-group
-		= label :user, :username, "Username:", {class: "control-label"}
-		.controls
-			= text_field :user, "username"
+=render :partial => "shared/flash_messages", :locals => {:flash => flash}
 
-	.control-group
-		= label :user, :password, "Password:", {class: "control-label"}
-		.controls
-			= password_field :user, "password"
+.container
+	.row
+		.offset3.span4
+			= form_tag({ :action => "sign_in", :controller => "users"}, {class: "form-horizontal"}) do
+				.control-group
+					= label :user, :username, "Username:", {class: "control-label"}
+					.controls
+						= text_field :user, "username"
 
-	.control-group
-		.controls
-			= submit_tag 'Login', {class: "btn"}
+				.control-group
+					= label :user, :password, "Password:", {class: "control-label"}
+					.controls
+						= password_field :user, "password"
+
+				.control-group
+					.controls
+						= submit_tag 'Login', {class: "btn"}
