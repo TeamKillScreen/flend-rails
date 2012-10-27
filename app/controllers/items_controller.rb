@@ -60,6 +60,7 @@ class ItemsController < ApplicationController
   			redirect_to new_item_path
   			return
   		else
+  			flash[:success] = "Item created successfully!"
 			redirect_to item_path(item.id)
 		end
   	end

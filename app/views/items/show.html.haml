@@ -1,5 +1,7 @@
 %h1= 'Item Details'
 
+=render :partial => "shared/flash_messages", :locals => {:flash => flash}
+
 %dl.dl-horizontal
 	%dt= 'Title:'
 	%dd= @item.title
