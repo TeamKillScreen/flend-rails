@@ -1,0 +1,16 @@
+%h1= 'Sign In'
+
+= form_tag({ :action => "sign_in", :controller => "users"}, {class: "form-horizontal"}) do
+	.control-group
+		= label :user, :username, "Username:", {class: "control-label"}
+		.controls
+			= text_field :user, "username"
+
+	.control-group
+		= label :user, :password, "Password:", {class: "control-label"}
+		.controls
+			= password_field :user, "password"
+
+	.control-group
+		.controls
+			= submit_tag 'Login', {class: "btn"}

@@ -1,4 +1,3 @@
 class User < ActiveResource::Base
-  self.site = "blahblahlbah"
-  self.element_name = "signin"
+  self.site = "http://flendapi.azurewebsites.net"
 end
