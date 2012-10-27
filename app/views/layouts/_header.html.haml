@@ -9,10 +9,13 @@
 				%ul.nav.pull-right
 					%li
 						= link_to 'Home', root_path
+					- if @signed_in
+						%li
+							= link_to 'New Item', new_item_path
 					%li
 						= link_to 'Items', items_path
 					%li
-						- if @sign_in
+						- unless @signed_in
 							= link_to 'Sign In', sign_in_path
 						- else
 							= link_to 'Sign Out', sign_out_path

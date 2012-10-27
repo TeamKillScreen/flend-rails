@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   def user_logged_in?
   	if session.has_key? :user
   		@welcome_message = "Welcome #{session[:user].firstName}!"
-  		@sign_in = false
+  		@signed_in = true
   	else
   		@welcome_message = nil
-  		@sign_in = true
+  		@signed_in = false
   	end
   end
 end

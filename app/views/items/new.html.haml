@@ -1,0 +1,33 @@
+%h1= 'Add New Item'
+
+=render :partial => "shared/flash_messages", :locals => {:flash => flash}
+
+.container
+	.row
+		.offset3.span4
+			= form_tag({ :action => "create", :controller => "items"}, {class: "form-horizontal"}) do
+				.control-group
+					= label :item, :title, "Title*:", {class: "control-label"}
+					.controls
+						= text_field :item, "title", value: @title
+
+				.control-group
+					= label :item, :description, "Description*:", {class: "control-label"}
+					.controls
+						= text_area :item, "description", rows: 5, value: @description
+
+				.control-group
+					= label :item, :category, "Category:", {class: "control-label"}
+					.controls
+						= text_field :item, "category", value: @category
+
+				.control-group
+					= label :item, :tags, "Tags (Comma seperated):", {class: "control-label"}
+					.controls
+						= text_field :item, "tags", value: @tags
+
+				.control-group
+					.controls
+						= submit_tag 'Add New Item', {class: "btn"}
+
+* Indicates required field
