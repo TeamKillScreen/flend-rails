@@ -24,7 +24,7 @@
 						= select :item, "category", @categories.map { |u| [u.description,u.id] }, value: @category
 
 				.control-group
-					= label :item, :tags, "Tags (Comma seperated):", {class: "control-label"}
+					= label :item, :tags, "Tags (Comma separated):", {class: "control-label"}
 					.controls
 						= text_field :item, "tags", value: @tags, placeholder: "e.g. ladder, long, green"
 
