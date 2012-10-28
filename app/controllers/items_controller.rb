@@ -21,50 +21,57 @@ class ItemsController < ApplicationController
   end
 
   def create
-  	#Temp redirect to do nothing!
-  	unless params.has_key? :item
-  		flash[:error] = "Error creating item: Item details not found"
-  		redirect_to new_item_path
+  	unless session.has_key? :user
+  		flash[:error] = "You need to be logged in to create a new item!"
+  		redirect_to sign_in_path
   	else
-  		item = params[:item]
-  		if not item.has_key? :title or item[:title].nil? or item[:title] == ""
-  			flash[:error] = "Error creating item: Title must be filled in"
-  			flash[:params] = params
-  			redirect_to new_item_path
-  			return
-  		end
-  		if not item.has_key? :description or item[:description].nil? or item[:description] == ""
-  			flash[:error] = "Error creating item: Description must be filled in"
-  			flash[:params] = params
-  			redirect_to new_item_path
-  			return
-  		end
+	  	#Temp redirect to do nothing!
+	  	unless params.has_key? :item
+	  		flash[:error] = "Error creating item: Item details not found"
+	  		redirect_to new_item_path
+	  	else
+	  		item = params[:item]
+	  		if not item.has_key? :title or item[:title].nil? or item[:title] == ""
+	  			flash[:error] = "Error creating item: Title must be filled in"
+	  			flash[:params] = params
+	  			redirect_to new_item_path
+	  			return
+	  		end
+	  		if not item.has_key? :description or item[:description].nil? or item[:description] == ""
+	  			flash[:error] = "Error creating item: Description must be filled in"
+	  			flash[:params] = params
+	  			redirect_to new_item_path
+	  			return
+	  		end
 
-  		if not item.has_key? :postcode or item[:postcode].nil? or item[:postcode] == ""
-  			flash[:error] = "Error creating item: Item Location must be filled in"
-  			flash[:params] = params
-  			redirect_to new_item_path
-  			return
-  		elsif not item[:postcode].match /^([A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\ [0-9][ABD-HJLNP-UW-Z]{2}|(GIR\ 0AA)|(SAN\ TA1)|(BFPO\ (C\/O\ )?[0-9]{1,4})|((ASCN|BBND|[BFS]IQQ|PCRN|STHL|TDCU|TKCA)\ 1ZZ))$/
-  			flash[:error] = "Error creating item: Please enter a valid postcode."
-  			flash[:params] = params
-  			redirect_to new_item_path
-  			return
-  		end
+	  		if not item.has_key? :postcode or item[:postcode].nil? or item[:postcode] == ""
+	  			flash[:error] = "Error creating item: Item Location must be filled in"
+	  			flash[:params] = params
+	  			redirect_to new_item_path
+	  			return
+	  		elsif not item[:postcode].match /^([A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\ [0-9][ABD-HJLNP-UW-Z]{2}|(GIR\ 0AA)|(SAN\ TA1)|(BFPO\ (C\/O\ )?[0-9]{1,4})|((ASCN|BBND|[BFS]IQQ|PCRN|STHL|TDCU|TKCA)\ 1ZZ))$/
+	  			flash[:error] = "Error creating item: Please enter a valid postcode."
+	  			flash[:params] = params
+	  			redirect_to new_item_path
+	  			return
+	  		end
 
-  		#Passed validation, create!
-  		tags = item[:tags].gsub(/\s+/, "").split(',')
+	  		#Passed validation, create!
+	  		tags = item[:tags].gsub(/\s+/, "").split(',')
 
-  		item = Item.create(title: item[:title], description: item[:description], category: item[:category], tags: tags, postcode: item[:postcode])
+	  		user = session[:user]
 
-  		if item.nil?
-  			flash[:error] = "Error creating item: Unable to save"
-  			flash[:params] = params
-  			redirect_to new_item_path
-  			return
-  		else
-  			flash[:success] = "Item created successfully!"
-			redirect_to item_path(item.id)
+	  		item = Item.create(title: item[:title], description: item[:description], category: item[:category], tags: tags, postcode: item[:postcode], userId: user.id)
+
+	  		if item.nil?
+	  			flash[:error] = "Error creating item: Unable to save"
+	  			flash[:params] = params
+	  			redirect_to new_item_path
+	  			return
+	  		else
+	  			flash[:success] = "Item created successfully!"
+				redirect_to item_path(item.id)
+			end
 		end
   	end
   end
