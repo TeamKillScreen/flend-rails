@@ -9,7 +9,7 @@
 
 .container
     .offset1.span10
-        = gmaps(map_options: {zoom: 16, type: "TERRAIN", auto_zoom: false, center: "new google.maps.LatLng(#{@user.lat}, #{@user.lng}"}, markers: { data: @json },)
+        = gmaps(map_options: {zoom: 16, type: "TERRAIN", auto_zoom: true, auto_adjust: false, center_longitude:  @user.lng, center_latitude: @user.lat}, markers: { data: @json },)
 
 #divColor
     No messages yet.
