@@ -12,7 +12,8 @@
 		var latLng = new google.maps.LatLng(options.lat, options.lng);
 
 		_infoWindow.setPosition(latLng);
-		_infoWindow.setContent(options.title);
+		var content = "<h4><a href='/items/" + options.id + "'>" + options.title + "</a></h4><p>" + options.description + "</p>";
+		_infoWindow.setContent(content);
 
 		return _infoWindow;
 	};
@@ -60,7 +61,9 @@
 			var marker = _addMarker({
 				lat: message.lat,
 				lng: message.lng,
-				title: message.title
+				title: message.title,
+				description: message.description,
+				id: message.id
 			});
 		});		
 	}
