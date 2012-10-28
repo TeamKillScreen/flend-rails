@@ -5,6 +5,7 @@
         %link= stylesheet_link_tag    "application", :media => "all"
         %link= javascript_include_tag "application"
         =render 'layouts/shim'
+        = yield :scripts
     %body
         =render 'layouts/header'       
         .container

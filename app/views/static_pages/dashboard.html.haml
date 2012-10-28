@@ -1,1 +1,12 @@
+%script{src: "http://js.pusher.com/1.12/pusher.min.js"}
+%script{src: "http://code.jquery.com/jquery-1.8.2.min.js"}
+= javascript_include_tag "dashboard"
+
+
 %h1= 'Dashboard'
+.container
+    .offset1.span10
+        = gmaps(map_options: {zoom: 16, type: "TERRAIN", auto_zoom: false}, markers: { data: @json },)
+
+#divColor
+    No messages yet.

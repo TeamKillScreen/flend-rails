@@ -12,6 +12,10 @@ class StaticPagesController < ApplicationController
   	unless session.has_key? :user
   		flash[:error] = "You need to be logged in to view your dashboard!"
   		redirect_to sign_in_path
+  	else
+  		@items = Item.all
+
+  		@json = @items.to_gmaps4rails
   	end
   end
 end
