@@ -1,4 +1,6 @@
-%h1= 'Add New Item'
+%h1= 'Create New Item Request'
+
+%p= "Please use this form to submit a new item request. This will be pushed to all local users to see if they can lend you what you need."
 
 =render :partial => "shared/flash_messages", :locals => {:flash => flash}
 
@@ -27,7 +29,7 @@
 						= text_field :item, "tags", value: @tags, placeholder: "e.g. ladder, long, green"
 
 				.control-group
-					= label :item, :postcode, "Item Location*:", {class: "control-label"}
+					= label :item, :postcode, "Request Location+*:", {class: "control-label"}
 					.controls
 						= text_field :item, "postcode", value: @postcode, placeholder: "Post Code: e.g. OL11 1RY"
 
@@ -35,4 +37,5 @@
 					.controls
 						= submit_tag 'Add New Item', {class: "btn"}
 
++ Please enter the Location where the item is required.
 * Indicates required field
