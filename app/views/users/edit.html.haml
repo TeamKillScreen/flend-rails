@@ -1,9 +1,11 @@
 %h1= 'Edit My Account'
 
+=render :partial => "shared/flash_messages", :locals => {:flash => flash}
+
 .container
 	.row
 		.offset3.span4
-			= form_tag({ :action => "update", :controller => "users"}, {class: "form-horizontal"}) do
+			= form_tag("/users/#{@user.id}", {method: :put, class: "form-horizontal"}) do
 				.control-group
 					= label :userupdate, :userupdatename, "Username:", {class: "control-label"}
 					.controls
@@ -11,7 +13,7 @@
 				.control-group
 					= label :userupdate, :firstname, "First Name:", {class: "control-label"}
 					.controls
-						= text_field :userupdate, "fistname", value: @user.firstName
+						= text_field :userupdate, "firstname", value: @user.firstName
 				.control-group
 					= label :userupdate, :surname, "Surname:", {class: "control-label"}
 					.controls
@@ -19,11 +21,11 @@
 				.control-group
 					= label :userupdate, :postcode, "Postcode:", {class: "control-label"}
 					.controls
-						= text_field :userupdate, "postcode", placeholder: "Post Code: e.g. OL11 1RY"
+						= text_field :userupdate, "postcode", placeholder: "Post Code: e.g. OL11 1RY", value: @user.postcode
 				.control-group
 					= label :userupdate, :mobnumber, "Mobile Number:", {class: "control-label"}
 					.controls
-						= text_field :userupdate, "mobnumber", placeholder: "e.g. 07740123123"
+						= text_field :userupdate, "mobnumber", placeholder: "e.g. 07740123123", value: @user.mobileNumber
 				
 				.control-group
 					.controls

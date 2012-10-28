@@ -1,5 +1,6 @@
 %h1= 'My Account'
 
+=render :partial => "shared/flash_messages", :locals => {:flash => flash}
 
 %dl.dl-horizontal
 	%dt= 'Username:'
@@ -8,5 +9,9 @@
 	%dd= @user.firstName
 	%dt= 'Surname:'
 	%dd= @user.lastName
+	%dt= 'Postcode:'
+	%dd= @user.postcode
+	%dt= 'Mobile Number:'
+	%dd= @user.mobileNumber
 
 = link_to 'Edit', my_account_edit_path, class: 'btn'

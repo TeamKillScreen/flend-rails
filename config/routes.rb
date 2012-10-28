@@ -13,6 +13,7 @@ Flend::Application.routes.draw do
   match '/my_account', to: 'users#show'
   match '/my_account/edit', to: 'users#edit'
   match '/dashboard',  to: 'static_pages#dashboard'
-  match '/my_account/edit', to: 'users#update', via: :update
+
+  resources :users, only: [:update]
 
 end
