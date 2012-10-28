@@ -114,3 +114,11 @@ footer {
 }
 
 /* misc */
+
+/* gmap fix */
+#map img { 
+  max-width: none;
+}
+#map label { 
+  width: auto; display:inline; 
+} 

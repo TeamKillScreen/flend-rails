@@ -15,6 +15,9 @@ class ItemsController < ApplicationController
   	else
   		@category = categories[catindex].description
   	end
+
+  	#Map details
+  	@json = @item.to_gmaps4rails
   end
 
   def create

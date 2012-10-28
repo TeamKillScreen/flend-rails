@@ -11,5 +11,9 @@
 	%dd= @category
 	%dt= 'Tags:'
 	%dd= @item.tags.join(", ")
+	%dt= 'Location:'
+	%dd= gmaps(map_options: {zoom: 16, type: "TERRAIN", auto_zoom: false}, markers: { data: @json },)
+
+
 
 = link_to '< Back to Items List', items_path

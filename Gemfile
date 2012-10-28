@@ -11,6 +11,8 @@ gem 'haml'
 
 gem 'bootstrap-sass'
 
+gem 'gmaps4rails'
+
 group :development, :test do
   gem 'sqlite3'
 end
