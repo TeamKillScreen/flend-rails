@@ -14,6 +14,7 @@ class StaticPagesController < ApplicationController
   		redirect_to sign_in_path
   	else
   		@items = Item.all
+  		@user = session[:user]
 
   		@json = @items.to_gmaps4rails
   	end
